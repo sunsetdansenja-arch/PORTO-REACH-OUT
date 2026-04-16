@@ -3,111 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Kopi Klasik | Klasik Utopia</title>
+    <title>Toko Kopi Klasik | Utopia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #050505; 
-            /* Menambahkan tekstur noise untuk kesan unfinished/raw */
-            background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #F5F5F0; /* Off-white / Cream */
+            color: #0A0A0A;
+            overflow-x: hidden;
         }
-        
-        .glass-card { 
-            background: rgba(20, 20, 20, 0.7); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-        }
-        
-        .btn-sky-blue { 
-            background-color: #00BFFF; 
-            color: #000; 
-            box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
-            font-weight: 800;
-        }
-
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        
-        /* Tipografi Brutalist: Tight tracking & Italic headings */
-        .brutalist-title {
+        .oversized-text {
+            font-size: 15vw;
+            line-height: 0.8;
             letter-spacing: -0.05em;
-            font-style: italic;
+            font-weight: 800;
+            color: #0A0A0A;
             text-transform: uppercase;
+        }
+        .pill-button {
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark-section {
+            background-color: #0A0A0A;
+            color: #F5F5F0;
+        }
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
-<body class="text-zinc-100 min-h-screen flex justify-center p-5 pb-12">
-    <div class="w-full max-w-md flex flex-col">
+<body class="antialiased">
+
+    <nav class="flex justify-between items-center p-6 sticky top-0 z-50 bg-[#F5F5F0]/80 backdrop-blur-md">
+        <div class="text-xl font-extrabold tracking-tighter">KK.</div>
+        <a href="menu.html" class="pill-button bg-[#0A0A0A] text-[#F5F5F0] px-6 py-2 text-xs font-bold uppercase flex items-center gap-2">
+            Menu <span class="bg-[#00BFFF] w-1.5 h-1.5 rounded-full"></span>
+        </a>
+    </nav>
+
+    <section class="relative pt-10 pb-20 px-4 overflow-hidden">
+        <div class="text-center mb-[-4rem] relative z-0 opacity-10">
+            <h1 class="oversized-text">KLASIK</h1>
+        </div>
         
-        <header class="text-center mt-8 mb-8">
-            <h1 class="text-4xl font-extrabold brutalist-title leading-none mb-2">KLASIK UTOPIA.</h1>
-            <p class="text-zinc-500 text-[11px] uppercase tracking-[0.2em] font-light">Cultural space for the culture and the people</p>
-        </header>
-
-        <div class="w-full mb-10">
-            <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 hide-scrollbar">
-                <div class="snap-center shrink-0 w-[90%] aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10">
-                    <img src="download.jpg" class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-500">
-                </div>
-                <div class="snap-center shrink-0 w-[90%] aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10">
-                    <img src="MENU KLASIK KARAWACI.jpg" class="w-full h-full object-cover grayscale-[0.3]">
-                </div>
-                <div class="snap-center shrink-0 w-[90%] aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10">
-                    <img src="edited-image.png" class="w-full h-full object-cover grayscale-[0.3]">
-                </div>
+        <div class="relative z-10 max-w-sm mx-auto">
+            <div class="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] border-white">
+                <img src="download.jpg" class="w-full h-full object-cover" alt="Hero Image">
             </div>
-            <div class="flex justify-center gap-1.5 mt-4">
-                <div class="w-1.5 h-1.5 rounded-full bg-[#00BFFF]"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>
+            <div class="absolute -bottom-6 -right-4 bg-[#0A0A0A] text-white p-4 rounded-3xl shadow-xl max-w-[140px] border border-white/10">
+                <img src="edited-image.png" class="w-full aspect-square object-cover rounded-2xl mb-2">
+                <p class="text-[8px] leading-tight opacity-70">Experience the brutalist charm of Utopia.</p>
             </div>
         </div>
 
-        <div class="space-y-4 mb-10">
-            <a href="menu.html" class="btn-sky-blue w-full p-5 rounded-2xl flex items-center justify-center gap-3 text-sm tracking-widest uppercase active:scale-[0.97] transition-transform">
-                <span>View Digital Menu</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
-            
-            <a href="https://www.tiktok.com/@belakanglayarklasik" target="_blank" class="glass-card w-full p-5 rounded-2xl flex items-center justify-between group">
-                <span class="text-xs font-bold tracking-widest uppercase italic">The Behind The Scenes</span>
-                <span class="text-[#00BFFF] group-hover:translate-x-1 transition-transform">TIKTOK</span>
-            </a>
+        <div class="mt-16 px-6">
+            <h2 class="text-4xl font-extrabold leading-none tracking-tighter mb-4 italic uppercase">Utopia Built<br>For Culture.</h2>
+            <p class="text-xs text-zinc-500 max-w-[200px] leading-relaxed mb-6">Not just a coffee shop. A cultural space for the people.</p>
+            <a href="https://www.tiktok.com/@belakanglayarklasik" class="pill-button border border-black px-8 py-4 text-[10px] font-black uppercase inline-block">Explore Stories</a>
         </div>
+    </section>
 
-        <div class="space-y-8">
-            <section>
-                <h2 class="text-[10px] font-black tracking-[0.3em] text-zinc-600 uppercase mb-4 ml-1 italic">The Locations</h2>
-                <div class="grid grid-cols-2 gap-3">
-                    <a href="#" class="glass-card p-4 rounded-xl text-center border-white/5 active:bg-white/5">
-                        <span class="text-[11px] font-bold tracking-tighter">KARAWACI</span>
-                    </a>
-                    <a href="#" class="glass-card p-4 rounded-xl text-center border-white/5 active:bg-white/5">
-                        <span class="text-[11px] font-bold tracking-tighter">TEBET</span>
-                    </a>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="text-[10px] font-black tracking-[0.3em] text-zinc-600 uppercase mb-4 ml-1 italic">Doorstep Delivery</h2>
-                <div class="grid grid-cols-2 gap-3">
-                    <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-karawaci-d3741102-7267-4899-b8df-925f6bab5985" class="glass-card p-4 rounded-xl flex items-center justify-center gap-2 border-white/5">
-                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                        <span class="text-[11px] font-bold">GOFOOD KWN</span>
-                    </a>
-                    <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-tebet-bb300662-4ab4-4134-9424-b5f0d1ad2ce2" class="glass-card p-4 rounded-xl flex items-center justify-center gap-2 border-white/5">
-                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                        <span class="text-[11px] font-bold">GOFOOD TBT</span>
-                    </a>
-                </div>
-            </section>
+    <div class="bg-[#0A0A0A] py-4 border-y border-white/10 overflow-hidden">
+        <div class="marquee text-[#F5F5F0] text-[10px] font-bold uppercase tracking-[0.3em]">
+            bespoke culture ✦ specialty coffee ✦ no gimmicks ✦ utopia space ✦ bespoke culture ✦ specialty coffee ✦ no gimmicks ✦ utopia space ✦
         </div>
-
-        <footer class="mt-20 mb-8 text-center">
-            <p class="text-[9px] text-zinc-700 tracking-[0.4em] uppercase">No Gimmicks. Just Utopia.</p>
-        </footer>
     </div>
+
+    <section class="dark-section px-6 py-20 rounded-t-[3rem] -mt-8">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h3 class="text-xs font-bold tracking-[0.2em] text-[#00BFFF] uppercase mb-2">Visit Us</h3>
+                <h2 class="text-3xl font-bold tracking-tighter italic">THE LOCATIONS.</h2>
+            </div>
+            <div class="text-[10px] opacity-50 uppercase tracking-widest">01 — 02</div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 mb-12">
+            <a href="https://www.google.com/search?q=Toko+Kopi+Klasik+Karawaci" class="group relative bg-zinc-900 rounded-[2rem] p-8 border border-white/5 overflow-hidden">
+                <div class="relative z-10">
+                    <span class="text-[10px] font-bold opacity-50 block mb-1">01</span>
+                    <h4 class="text-xl font-bold italic tracking-tighter">KARAWACI</h4>
+                </div>
+                <div class="absolute right-6 top-1/2 -translate-y-1/2 text-2xl opacity-20 group-hover:opacity-100 group-hover:text-[#00BFFF] transition-all">→</div>
+            </a>
+            <a href="https://www.google.com/search?q=Toko+Kopi+Klasik+Tebet" class="group relative bg-zinc-900 rounded-[2rem] p-8 border border-white/5 overflow-hidden">
+                <div class="relative z-10">
+                    <span class="text-[10px] font-bold opacity-50 block mb-1">02</span>
+                    <h4 class="text-xl font-bold italic tracking-tighter">TEBET</h4>
+                </div>
+                <div class="absolute right-6 top-1/2 -translate-y-1/2 text-2xl opacity-20 group-hover:opacity-100 group-hover:text-[#00BFFF] transition-all">→</div>
+            </a>
+        </div>
+
+        <h3 class="text-[10px] font-bold tracking-[0.2em] text-zinc-500 uppercase mb-6 ml-1">Delivery Service</h3>
+        <div class="grid grid-cols-2 gap-3">
+            <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-karawaci..." class="bg-[#F5F5F0] text-black p-4 rounded-2xl text-center text-[10px] font-black uppercase">GoFood KWN</a>
+            <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-tebet..." class="bg-[#F5F5F0] text-black p-4 rounded-2xl text-center text-[10px] font-black uppercase">GoFood TBT</a>
+        </div>
+    </section>
+
 </body>
 </html>

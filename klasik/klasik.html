@@ -9,110 +9,105 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #050505; /* Hitam pekat/Brutalist */
+            background-color: #050505; 
+            /* Menambahkan tekstur noise untuk kesan unfinished/raw */
             background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); 
         }
         
-        /* Dark Glassmorphism */
         .glass-card { 
-            background: rgba(20, 20, 20, 0.6); 
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            transition: all 0.3s ease; 
+            background: rgba(20, 20, 20, 0.7); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
         }
         
-        /* Tombol Utama - Deep Sky Blue */
-        .btn-primary { 
+        .btn-sky-blue { 
             background-color: #00BFFF; 
             color: #000; 
-            font-weight: 800; 
-            transition: transform 0.2s; 
-            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.25);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+            font-weight: 800;
         }
-        .btn-primary:active { transform: scale(0.96); }
 
-        /* Menyembunyikan Scrollbar untuk Carousel tapi tetap bisa di-scroll */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Tipografi Brutalist: Tight tracking & Italic headings */
+        .brutalist-title {
+            letter-spacing: -0.05em;
+            font-style: italic;
+            text-transform: uppercase;
+        }
     </style>
 </head>
-<body class="text-zinc-100 min-h-screen flex justify-center p-4 sm:p-6 pb-12">
-    <div class="w-full max-w-md flex flex-col items-center">
+<body class="text-zinc-100 min-h-screen flex justify-center p-5 pb-12">
+    <div class="w-full max-w-md flex flex-col">
         
-        <header class="text-center mt-6 mb-6 w-full">
-            <h1 class="text-3xl font-extrabold tracking-tighter mb-1 italic text-white">KLASIK UTOPIA.</h1>
-            <p class="text-zinc-400 text-xs font-light px-4">Cultural space for the culture and the people.</p>
+        <header class="text-center mt-8 mb-8">
+            <h1 class="text-4xl font-extrabold brutalist-title leading-none mb-2">KLASIK UTOPIA.</h1>
+            <p class="text-zinc-500 text-[11px] uppercase tracking-[0.2em] font-light">Cultural space for the culture and the people</p>
         </header>
 
-        <div class="w-full mb-8">
-            <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-2 hide-scrollbar">
-                <div class="snap-center shrink-0 w-[85%] aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/10 shadow-lg">
-                    <img src="./download.jpg" alt="Klasik Vibe 1" class="w-full h-full object-cover">
+        <div class="w-full mb-10">
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 hide-scrollbar">
+                <div class="snap-center shrink-0 w-[90%] aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10">
+                    <img src="download.jpg" class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-500">
                 </div>
-                <div class="snap-center shrink-0 w-[85%] aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/10 shadow-lg">
-                    <img src="./MENU KLASIK KARAWACI.jpg" alt="Klasik Vibe 2" class="w-full h-full object-cover">
+                <div class="snap-center shrink-0 w-[90%] aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10">
+                    <img src="MENU KLASIK KARAWACI.jpg" class="w-full h-full object-cover grayscale-[0.3]">
                 </div>
-                <div class="snap-center shrink-0 w-[85%] aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/10 shadow-lg">
-                    <img src="./edited-image.png" alt="Klasik Vibe 3" class="w-full h-full object-cover">
+                <div class="snap-center shrink-0 w-[90%] aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10">
+                    <img src="edited-image.png" class="w-full h-full object-cover grayscale-[0.3]">
                 </div>
             </div>
-            <div class="flex justify-center gap-1 mt-3">
+            <div class="flex justify-center gap-1.5 mt-4">
                 <div class="w-1.5 h-1.5 rounded-full bg-[#00BFFF]"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-zinc-700"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-zinc-700"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>
             </div>
         </div>
 
-        <div class="w-full mb-8">
-            <a href="menu.html" class="btn-primary w-full p-4 rounded-2xl flex items-center justify-center gap-3 text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                VIEW DIGITAL MENU
+        <div class="space-y-4 mb-10">
+            <a href="menu.html" class="btn-sky-blue w-full p-5 rounded-2xl flex items-center justify-center gap-3 text-sm tracking-widest uppercase active:scale-[0.97] transition-transform">
+                <span>View Digital Menu</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+            
+            <a href="https://www.tiktok.com/@belakanglayarklasik" target="_blank" class="glass-card w-full p-5 rounded-2xl flex items-center justify-between group">
+                <span class="text-xs font-bold tracking-widest uppercase italic">The Behind The Scenes</span>
+                <span class="text-[#00BFFF] group-hover:translate-x-1 transition-transform">TIKTOK</span>
             </a>
         </div>
 
-        <div class="w-full mb-8">
-            <a href="https://www.tiktok.com/@belakanglayarklasik" target="_blank" class="glass-card w-full p-4 rounded-2xl flex items-center justify-between group hover:border-[#00BFFF]/50">
-                <div class="flex items-center gap-3">
-                    <svg class="w-5 h-5 text-[#00BFFF]" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.31-.75.42-1.24 1.25-1.33 2.1-.1.7.1 1.41.53 1.98.5.73 1.36 1.19 2.26 1.17.8-.06 1.55-.52 1.98-1.19.46-.65.65-1.45.62-2.23V.02z"/></svg>
-                    <span class="text-sm font-semibold tracking-wide italic">@belakanglayarklasik</span>
+        <div class="space-y-8">
+            <section>
+                <h2 class="text-[10px] font-black tracking-[0.3em] text-zinc-600 uppercase mb-4 ml-1 italic">The Locations</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="#" class="glass-card p-4 rounded-xl text-center border-white/5 active:bg-white/5">
+                        <span class="text-[11px] font-bold tracking-tighter">KARAWACI</span>
+                    </a>
+                    <a href="#" class="glass-card p-4 rounded-xl text-center border-white/5 active:bg-white/5">
+                        <span class="text-[11px] font-bold tracking-tighter">TEBET</span>
+                    </a>
                 </div>
-                <span class="text-zinc-600 text-xs uppercase tracking-widest">TikTok</span>
-            </a>
+            </section>
+
+            <section>
+                <h2 class="text-[10px] font-black tracking-[0.3em] text-zinc-600 uppercase mb-4 ml-1 italic">Doorstep Delivery</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-karawaci-d3741102-7267-4899-b8df-925f6bab5985" class="glass-card p-4 rounded-xl flex items-center justify-center gap-2 border-white/5">
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                        <span class="text-[11px] font-bold">GOFOOD KWN</span>
+                    </a>
+                    <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-tebet-bb300662-4ab4-4134-9424-b5f0d1ad2ce2" class="glass-card p-4 rounded-xl flex items-center justify-center gap-2 border-white/5">
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                        <span class="text-[11px] font-bold">GOFOOD TBT</span>
+                    </a>
+                </div>
+            </section>
         </div>
 
-        <div class="w-full mb-8">
-            <h2 class="text-[10px] font-bold tracking-[0.2em] text-[#00BFFF] uppercase mb-4 ml-1">Visit The Utopia</h2>
-            <div class="grid grid-cols-2 gap-3">
-                <a href="https://www.google.com/search?q=Toko+Kopi+Klasik+Karawaci" target="_blank" class="glass-card p-4 rounded-2xl text-center hover:bg-white/5 active:scale-95 transition-all">
-                    <span class="text-xs font-semibold block text-white">KARAWACI</span>
-                </a>
-                <a href="https://www.google.com/search?q=Toko+Kopi+Klasik+Tebet" target="_blank" class="glass-card p-4 rounded-2xl text-center hover:bg-white/5 active:scale-95 transition-all">
-                    <span class="text-xs font-semibold block text-white">TEBET</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="w-full mb-8">
-            <h2 class="text-[10px] font-bold tracking-[0.2em] text-[#00BFFF] uppercase mb-4 ml-1">Order Delivery</h2>
-            <div class="space-y-3">
-                <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-karawaci-d3741102-7267-4899-b8df-925f6bab5985" target="_blank" class="glass-card w-full p-4 rounded-2xl flex items-center justify-between group active:scale-[0.98]">
-                    <span class="text-sm font-medium text-white">GoFood Karawaci</span>
-                    <div class="w-6 h-6 rounded-full bg-[#00BFFF]/10 flex items-center justify-center text-[#00BFFF] group-hover:bg-[#00BFFF] group-hover:text-black transition-colors">
-                        <span class="text-xs">→</span>
-                    </div>
-                </a>
-                <a href="https://gofood.co.id/jakarta/restaurant/toko-kopi-klasik-tebet-bb300662-4ab4-4134-9424-b5f0d1ad2ce2" target="_blank" class="glass-card w-full p-4 rounded-2xl flex items-center justify-between group active:scale-[0.98]">
-                    <span class="text-sm font-medium text-white">GoFood Tebet</span>
-                    <div class="w-6 h-6 rounded-full bg-[#00BFFF]/10 flex items-center justify-center text-[#00BFFF] group-hover:bg-[#00BFFF] group-hover:text-black transition-colors">
-                        <span class="text-xs">→</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
+        <footer class="mt-20 mb-8 text-center">
+            <p class="text-[9px] text-zinc-700 tracking-[0.4em] uppercase">No Gimmicks. Just Utopia.</p>
+        </footer>
     </div>
 </body>
 </html>

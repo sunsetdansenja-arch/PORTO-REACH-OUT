@@ -2,10 +2,17 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Savora Artisan | High-Conversion v2.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Savora Artisan | Premium Pastries & Coffee</title>
+    
+    <meta name="description" content="Savora Artisan – Pastries & Coffee premium dikirim fresh setiap hari. Pesan via WhatsApp sekarang.">
+    <meta property="og:title" content="Savora Artisan">
+    <meta property="og:description" content="Handcrafted daily. Delivered fresh within 60 mins.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <script>
@@ -21,12 +28,13 @@
                         'apple-gray': '#F5F5F7'
                     },
                     animation: {
-                        'bounce-subtle': 'bounce-subtle 0.5s ease-in-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-x': 'bounce-x 1s infinite'
                     },
                     keyframes: {
-                        'bounce-subtle': {
-                            '0%, 100%': { transform: 'scale(1)' },
-                            '50%': { transform: 'scale(1.05)' },
+                        'bounce-x': {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '50%': { transform: 'translateX(25%)' }
                         }
                     }
                 }
@@ -35,104 +43,211 @@
     </script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .glass-nav { background: rgba(248, 245, 241, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .glass-nav { background: rgba(248, 245, 241, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .glass-modal { background: rgba(31, 31, 31, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
         .product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .product-card:active { transform: scale(0.98); }
-        .btn-spring { transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .btn-spring:active { transform: scale(0.95); }
+        .btn-spring { transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .btn-spring:active { transform: scale(0.96); }
+        
+        /* Fly to cart animation class */
+        .fly-item {
+            position: fixed;
+            z-index: 1000;
+            border-radius: 50%;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+            box-shadow: 0 10px 25px rgba(128,0,32,0.5);
+        }
     </style>
 </head>
-<body class="flex justify-center min-h-screen bg-[#E5E5E5] font-sans text-charcoal selection:bg-maroon/10">
+<body class="flex justify-center min-h-screen bg-charcoal font-sans text-charcoal selection:bg-maroon/10">
 
-    <div class="w-full max-w-[480px] bg-cream relative min-h-screen shadow-2xl overflow-x-hidden pb-32">
+    <main class="w-full max-w-[480px] bg-cream relative min-h-screen shadow-2xl overflow-x-hidden pb-32 flex flex-col">
         
-        <header class="relative h-[85vh] w-full overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop" 
-                 alt="Artisan Pastry" class="w-full h-full object-cover scale-105 transform">
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent"></div>
+        <header class="relative min-h-[100dvh] w-full flex flex-col justify-end">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop" 
+                 srcset="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=480&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop 800w"
+                 sizes="(max-width: 480px) 100vw, 480px"
+                 decoding="async" fetchpriority="high"
+                 alt="Artisan Pastry" class="absolute inset-0 w-full h-full object-cover">
             
-            <div class="absolute bottom-0 left-0 w-full p-8" data-aos="fade-up">
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="bg-maroon text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest animate-pulse">Limited Daily Stock</span>
-                    <span class="text-xs text-white/90">⭐ 4.98 (312+ Orders Today)</span>
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent"></div>
+            
+            <div class="relative z-10 p-6 pb-12" data-aos="fade-up">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-maroon text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-widest animate-pulse-slow">Stock Habis: <span id="countdown">04:12:00</span></span>
                 </div>
-                <h1 class="text-5xl font-bold text-white mb-3 tracking-tighter leading-[0.9]">Savora Artisan.</h1>
-                <p class="text-white/70 font-medium mb-8 text-base">Handcrafted daily. Delivered fresh within 60 mins.</p>
+                <div class="flex items-center gap-1 mb-4 text-xs text-white/90 font-medium">
+                    <span>⭐ 4.98</span> <span class="opacity-50 mx-1">•</span> <span>312+ Orders Today</span>
+                </div>
+                
+                <h1 class="text-[2.75rem] font-extrabold text-white mb-2 tracking-tighter leading-[1]">Savora Artisan.</h1>
+                <p class="text-white/80 font-medium mb-8 text-[15px] leading-snug max-w-[85%]">Handcrafted daily. Delivered fresh within 60 mins.</p>
                 
                 <div class="flex flex-col gap-3">
-                    <button onclick="checkoutWA()" class="bg-maroon text-white font-bold py-4 px-6 rounded-2xl w-full btn-spring shadow-lg flex justify-center items-center gap-2">
+                    <button onclick="scrollToMenu()" class="min-h-[56px] bg-maroon text-white font-bold py-4 px-6 rounded-2xl w-full btn-spring shadow-[0_8px_30px_rgb(128,0,32,0.3)] flex justify-center items-center gap-2 text-[15px]">
                         Pesan Sekarang (WhatsApp)
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.67-1.611-.918-2.213-.242-.588-.487-.51-.67-.52-.172-.01-.37-.012-.568-.012-.199 0-.523.074-.797.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-4.821 7.454c-1.679 0-3.325-.449-4.753-1.299l-.341-.203-3.534.926.943-3.441-.222-.353c-.933-1.485-1.425-3.195-1.425-4.947 0-5.184 4.216-9.4 9.404-9.4 2.512 0 4.873.978 6.647 2.754 1.774 1.776 2.752 4.137 2.752 6.65 0 5.185-4.218 9.401-9.405 9.401m11.168-15.011C21.616 4.606 18.91 2.96 16.002 2.96 10.375 2.96 5.803 7.532 5.803 13.158c0 1.798.469 3.555 1.357 5.115l-1.44 5.259 5.381-1.411c1.512.823 3.212 1.258 4.937 1.259h.004c5.626 0 10.201-4.571 10.201-10.197 0-2.726-1.062-5.289-2.991-7.217z"/></svg>
                     </button>
-                    <button onclick="scrollToMenu()" class="bg-white/10 backdrop-blur-md text-white font-semibold py-4 px-6 rounded-2xl w-full border border-white/20">
+                    <button onclick="scrollToMenu()" class="min-h-[56px] bg-white/10 backdrop-blur-md text-white font-semibold py-4 px-6 rounded-2xl w-full border border-white/20 btn-spring text-[15px]">
                         Lihat Menu Lengkap
                     </button>
                 </div>
             </div>
+            
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-60 text-white animate-bounce">
+                <span class="text-[10px] uppercase tracking-widest font-bold mb-1">Scroll</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
         </header>
 
-        <section class="p-6 grid grid-cols-3 gap-4 border-b border-black/5" data-aos="fade-up">
-            <div class="text-center">
-                <div class="bg-maroon/5 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 text-maroon">🥖</div>
-                <p class="text-[10px] font-bold uppercase tracking-tighter">Artisan Made</p>
-            </div>
-            <div class="text-center">
-                <div class="bg-maroon/5 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 text-maroon">🔥</div>
-                <p class="text-[10px] font-bold uppercase tracking-tighter">Freshly Baked</p>
-            </div>
-            <div class="text-center">
-                <div class="bg-maroon/5 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 text-maroon">🚀</div>
-                <p class="text-[10px] font-bold uppercase tracking-tighter">Fast Delivery</p>
+        <section class="bg-white py-4 px-6 flex items-center justify-between border-b border-black/5" aria-label="Delivery Partners">
+            <p class="text-[11px] font-bold text-charcoal/60 uppercase tracking-wide">Instant Delivery Via:</p>
+            <div class="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
+                <svg width="60" height="20" viewBox="0 0 60 20" fill="currentColor"><rect width="60" height="20" rx="4"/></svg>
+                <svg width="60" height="20" viewBox="0 0 60 20" fill="currentColor"><rect width="60" height="20" rx="4"/></svg>
             </div>
         </section>
 
-        <nav id="menu-section" class="sticky top-0 z-30 glass-nav py-4 px-6 border-b border-black/5 overflow-x-auto no-scrollbar flex gap-3">
-            <button onclick="filterCategory('all', this)" class="category-btn active px-5 py-2 rounded-xl bg-maroon text-white font-semibold text-xs whitespace-nowrap shadow-sm">All</button>
-            <button onclick="filterCategory('coffee', this)" class="category-btn px-5 py-2 rounded-xl bg-white text-charcoal/50 font-semibold text-xs whitespace-nowrap shadow-sm border border-black/5">Coffee</button>
-            <button onclick="filterCategory('pastry', this)" class="category-btn px-5 py-2 rounded-xl bg-white text-charcoal/50 font-semibold text-xs whitespace-nowrap shadow-sm border border-black/5">Pastry</button>
-            <button onclick="filterCategory('cakes', this)" class="category-btn px-5 py-2 rounded-xl bg-white text-charcoal/50 font-semibold text-xs whitespace-nowrap shadow-sm border border-black/5">Cakes</button>
+        <section class="p-6 grid grid-cols-4 gap-2 bg-cream text-charcoal" data-aos="fade-up">
+            <div class="text-center flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-2 bg-white shadow-sm text-maroon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <p class="text-[9px] font-bold uppercase tracking-tighter">Premium Grade</p>
+            </div>
+            <div class="text-center flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-2 bg-white shadow-sm text-maroon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <p class="text-[9px] font-bold uppercase tracking-tighter">Fresh Daily</p>
+            </div>
+            <div class="text-center flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-2 bg-white shadow-sm text-maroon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <p class="text-[9px] font-bold uppercase tracking-tighter">60 Min Delivery</p>
+            </div>
+            <div class="text-center flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-2 bg-white shadow-sm text-maroon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8.5C21 8.5 19 14.5 12 14.5C5 14.5 3 8.5 3 8.5"/><path d="M12 14.5V22M8 18H16"/></svg>
+                </div>
+                <p class="text-[9px] font-bold uppercase tracking-tighter">Eco Packaging</p>
+            </div>
+        </section>
+
+        <nav id="menu-section" class="sticky top-0 z-30 glass-nav py-4 px-6 border-b border-black/5 overflow-x-auto no-scrollbar flex gap-3" aria-label="Product Categories">
+            <button onclick="filterCategory('all', this)" class="category-btn active min-h-[40px] px-5 py-2 rounded-xl bg-maroon text-white font-semibold text-xs whitespace-nowrap shadow-sm" aria-label="Show All">All</button>
+            <button onclick="filterCategory('coffee', this)" class="category-btn min-h-[40px] px-5 py-2 rounded-xl bg-white text-charcoal/60 font-semibold text-xs whitespace-nowrap shadow-sm border border-black/5" aria-label="Show Coffee">Coffee</button>
+            <button onclick="filterCategory('pastry', this)" class="category-btn min-h-[40px] px-5 py-2 rounded-xl bg-white text-charcoal/60 font-semibold text-xs whitespace-nowrap shadow-sm border border-black/5" aria-label="Show Pastry">Pastry</button>
+            <button onclick="filterCategory('cakes', this)" class="category-btn min-h-[40px] px-5 py-2 rounded-xl bg-white text-charcoal/60 font-semibold text-xs whitespace-nowrap shadow-sm border border-black/5" aria-label="Show Cakes">Cakes</button>
         </nav>
 
-        <main id="product-container" class="p-6 space-y-6">
-            </main>
+        <section id="product-container" class="p-6 space-y-6" aria-label="Product List">
+            </section>
 
-        <section class="px-6 py-10 bg-maroon text-white/90">
-            <p class="italic font-medium text-lg mb-4">"The best croissant I've ever had in Jakarta. Period."</p>
-            <p class="text-xs font-bold uppercase tracking-widest text-gold">— Sarah J., Food Enthusiast</p>
-        </section>
-
-        <div id="sticky-cart" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[440px] z-50 transform translate-y-40 transition-all duration-500 cubic-bezier(0.175, 0.885, 0.32, 1.275)">
-            <div class="bg-charcoal text-white rounded-3xl p-4 shadow-2xl flex justify-between items-center border border-white/10">
-                <div class="flex items-center gap-4">
-                    <div class="relative">
-                        <span class="text-2xl">🛍️</span>
-                        <span id="cart-badge" class="absolute -top-2 -right-2 bg-maroon text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                    </div>
+        <section class="px-6 py-4 bg-white border-t border-black/5" data-aos="fade-up">
+            <h3 class="font-bold text-sm mb-4 tracking-tight">Frequently Bought Together</h3>
+            <div class="flex items-center justify-between p-3 border border-black/5 rounded-2xl bg-apple-gray">
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=150&auto=format&fit=crop" loading="lazy" class="w-12 h-12 rounded-xl object-cover" alt="Drip Bag">
                     <div>
-                        <p class="text-[10px] uppercase font-bold text-white/50">Estimasi Total</p>
-                        <p id="cart-total" class="font-bold text-lg">Rp 0</p>
+                        <p class="font-bold text-sm">Savora Drip Bags (5pcs)</p>
+                        <p class="text-xs text-maroon font-bold">+ Rp 55.000</p>
                     </div>
                 </div>
-                <button onclick="checkoutWA()" class="bg-maroon hover:bg-maroon/90 text-white font-bold py-3 px-6 rounded-2xl transition-all active:scale-95">
-                    Order Now
+                <button onclick="flyToCart(event, 'Savora Drip Bags', 55000, 'https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=150&auto=format&fit=crop')" class="w-8 h-8 bg-white rounded-full flex items-center justify-center font-bold text-maroon shadow-sm btn-spring">+</button>
+            </div>
+        </section>
+
+        <section class="py-10 bg-maroon text-white/90 overflow-hidden" data-aos="fade-up">
+            <div class="px-6 mb-4">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1">Reviews</p>
+                <h3 class="text-xl font-bold">Loved by locals.</h3>
+            </div>
+            <div class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar px-6 gap-4 pb-4">
+                <div class="min-w-[280px] snap-center bg-white/10 p-5 rounded-3xl border border-white/10">
+                    <p class="italic font-medium text-sm mb-4">"The best croissant I've ever had in Jakarta. Flaky and perfect!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-cream/20 flex items-center justify-center text-xs font-bold">SJ</div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Sarah J.</p>
+                            <p class="text-[10px] text-white/50">Ordered 2 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="min-w-[280px] snap-center bg-white/10 p-5 rounded-3xl border border-white/10">
+                    <p class="italic font-medium text-sm mb-4">"Kopinya strong, pastry-nya fresh. Auto langganan buat meeting pagi."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-cream/20 flex items-center justify-center text-xs font-bold">BK</div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Bima K.</p>
+                            <p class="text-[10px] text-white/50">Ordered 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="sticky-cart" class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[440px] z-40 transform translate-y-40 opacity-0 transition-all duration-500 cubic-bezier(0.175, 0.885, 0.32, 1.275) pb-[env(safe-area-inset-bottom)]">
+            <div class="bg-charcoal text-white rounded-[24px] p-4 shadow-[0_20px_40px_rgba(0,0,0,0.3)] border border-white/10 flex justify-between items-center backdrop-blur-xl">
+                <div class="flex items-center gap-4 cursor-pointer" onclick="toggleCartModal()" role="button" aria-label="View Cart">
+                    <div class="relative bg-white/10 w-12 h-12 rounded-full flex items-center justify-center" id="cart-icon-target">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-maroon text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-white/50 mb-0.5">Total Belanja</p>
+                        <p id="cart-total" class="font-bold text-base leading-none">Rp 0</p>
+                    </div>
+                </div>
+                <button onclick="checkoutWA()" class="bg-white text-charcoal hover:bg-apple-gray font-bold py-3 px-5 rounded-[16px] text-sm transition-all btn-spring shadow-lg min-h-[48px]">
+                    Checkout WA
                 </button>
             </div>
         </div>
-    </div>
+
+        <div id="cart-modal" class="fixed inset-0 z-50 glass-modal flex flex-col justify-end opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="bg-white w-full max-w-[480px] mx-auto rounded-t-3xl p-6 transform translate-y-full transition-transform duration-300" id="cart-modal-content">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Keranjang Anda</h2>
+                    <button onclick="toggleCartModal()" class="w-8 h-8 bg-apple-gray rounded-full flex items-center justify-center font-bold text-charcoal/50">✕</button>
+                </div>
+                <div id="modal-cart-items" class="max-h-[50vh] overflow-y-auto space-y-4 mb-6 no-scrollbar">
+                    </div>
+                <button onclick="checkoutWA()" class="w-full bg-maroon text-white font-bold py-4 rounded-2xl btn-spring text-lg flex justify-center items-center gap-2">
+                    Kirim Pesanan (WA)
+                </button>
+            </div>
+        </div>
+
+    </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        // Init AOS
+        AOS.init({ duration: 600, once: true, offset: 50 });
 
+        // Dummy Data with optimized images
         const products = [
             { id: 1, category: 'pastry', name: 'Butter Croissant', desc: 'Handcrafted with AOP French Butter.', price: 35000, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=400&auto=format&fit=crop', badge: 'Best Seller' },
             { id: 2, category: 'coffee', name: 'Signature Latte', desc: 'Reserve espresso & creamy oat milk.', price: 48000, img: 'https://images.unsplash.com/photo-1589396575653-c09c794ff6a6?q=80&w=400&auto=format&fit=crop', badge: '' },
-            { id: 3, category: 'cakes', name: 'Tiramisu Cake', desc: 'Espresso-soaked layers with mascarpone.', price: 65000, img: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=400&auto=format&fit=crop', badge: 'New' },
+            { id: 3, category: 'cakes', name: 'Tiramisu Cake', desc: 'Espresso-soaked layers with mascarpone.', price: 65000, img: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=400&auto=format&fit=crop', badge: 'Limited 10/day' },
             { id: 4, category: 'pastry', name: 'Pain au Chocolat', desc: 'Dark chocolate wrapped in buttery layers.', price: 42000, img: 'https://images.unsplash.com/photo-1530610476181-d83430b64dcd?q=80&w=400&auto=format&fit=crop', badge: '' }
         ];
 
-        let cart = {};
+        // State & LocalStorage
+        let cart = JSON.parse(localStorage.getItem('savora_cart')) || {};
 
+        function saveCart() {
+            localStorage.setItem('savora_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function formatRp(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        }
+
+        // Render Product List
         function renderProducts(filter = 'all') {
             const container = document.getElementById('product-container');
             container.innerHTML = '';
@@ -142,57 +257,103 @@
             filtered.forEach(p => {
                 const qty = cart[p.name]?.qty || 0;
                 const card = `
-                    <div class="product-card bg-white rounded-[32px] p-5 shadow-sm border border-black/5" data-aos="fade-up">
+                    <article class="product-card bg-white rounded-[32px] p-5 shadow-sm border border-black/5" tabindex="0" data-aos="fade-up">
                         <div class="relative rounded-2xl overflow-hidden aspect-square mb-5">
-                            <img src="${p.img}" loading="lazy" alt="${p.name}" class="w-full h-full object-cover">
+                            <img src="${p.img}" loading="lazy" decoding="async" alt="${p.name}" id="img-${p.id}" class="w-full h-full object-cover">
                             ${p.badge ? `<div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-maroon text-[10px] font-black px-2 py-1 rounded shadow-sm">${p.badge}</div>` : ''}
                         </div>
                         <div class="flex justify-between items-start mb-1">
                             <h3 class="font-bold text-xl tracking-tight">${p.name}</h3>
-                            <span class="font-black text-lg text-maroon">${(p.price/1000)}k</span>
+                            <span class="font-black text-lg text-charcoal">${formatRp(p.price)}</span>
                         </div>
                         <p class="text-charcoal/50 text-sm mb-6 leading-relaxed">${p.desc}</p>
                         
                         <div id="btn-container-${p.id}">
                             ${qty > 0 ? `
-                                <div class="flex items-center justify-between bg-apple-gray rounded-2xl p-1">
-                                    <button onclick="updateQty('${p.name}', -1)" class="w-12 h-12 flex items-center justify-center font-bold text-xl text-maroon">-</button>
-                                    <span class="font-bold">${qty}</span>
-                                    <button onclick="updateQty('${p.name}', 1)" class="w-12 h-12 flex items-center justify-center font-bold text-xl text-maroon">+</button>
+                                <div class="flex items-center justify-between bg-apple-gray rounded-[16px] p-1 h-[56px]">
+                                    <button onclick="updateQty('${p.name}', -1)" class="w-14 h-full flex items-center justify-center font-bold text-xl text-maroon" aria-label="Kurangi">-</button>
+                                    <span class="font-bold text-lg">${qty}</span>
+                                    <button onclick="updateQty('${p.name}', 1)" class="w-14 h-full flex items-center justify-center font-bold text-xl text-maroon" aria-label="Tambah">+</button>
                                 </div>
                             ` : `
-                                <button onclick="updateQty('${p.name}', 1)" class="w-full bg-charcoal text-white font-bold py-4 rounded-2xl btn-spring">
+                                <button onclick="flyToCart(event, '${p.name}', ${p.price}, '${p.img}', ${p.id})" class="min-h-[56px] w-full bg-apple-gray text-charcoal font-bold rounded-[16px] btn-spring hover:bg-maroon hover:text-white transition-colors">
                                     + Add to Cart
                                 </button>
                             `}
                         </div>
-                    </div>
+                    </article>
                 `;
                 container.innerHTML += card;
             });
         }
 
+        // Category Filter
         function filterCategory(cat, el) {
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('bg-maroon', 'text-white');
-                btn.classList.add('bg-white', 'text-charcoal/50');
+                btn.classList.add('bg-white', 'text-charcoal/60');
             });
             el.classList.add('bg-maroon', 'text-white');
-            el.classList.remove('text-charcoal/50');
+            el.classList.remove('text-charcoal/60');
             renderProducts(cat);
         }
 
-        function updateQty(name, change) {
-            const product = products.find(p => p.name === name);
-            if (!cart[name]) cart[name] = { price: product.price, qty: 0 };
+        // Add to Cart with Fly Animation
+        function flyToCart(e, name, price, imgUrl, id = null) {
+            // Update Data
+            if (!cart[name]) cart[name] = { price: price, qty: 0, img: imgUrl };
+            cart[name].qty += 1;
+            saveCart();
+            if(id) renderProducts(document.querySelector('.category-btn.active')?.innerText.toLowerCase() || 'all');
+
+            // Animation Logic
+            const btn = e.currentTarget;
+            const target = document.getElementById('cart-icon-target');
             
-            cart[name].qty += change;
-            if (cart[name].qty <= 0) delete cart[name];
+            if (!target) return;
+
+            const flyingImg = document.createElement('img');
+            flyingImg.src = imgUrl;
+            flyingImg.classList.add('fly-item');
             
-            updateCartUI();
-            renderProducts(document.querySelector('.category-btn.active')?.innerText.toLowerCase() || 'all');
+            const btnRect = btn.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+
+            flyingImg.style.width = '40px';
+            flyingImg.style.height = '40px';
+            flyingImg.style.left = `${btnRect.left + (btnRect.width/2) - 20}px`;
+            flyingImg.style.top = `${btnRect.top + (btnRect.height/2) - 20}px`;
+            
+            document.body.appendChild(flyingImg);
+
+            // Trigger animation
+            setTimeout(() => {
+                flyingImg.style.left = `${targetRect.left + 4}px`;
+                flyingImg.style.top = `${targetRect.top + 4}px`;
+                flyingImg.style.width = '10px';
+                flyingImg.style.height = '10px';
+                flyingImg.style.opacity = '0.2';
+            }, 10);
+
+            // Cleanup
+            setTimeout(() => {
+                flyingImg.remove();
+                target.classList.add('scale-110');
+                setTimeout(() => target.classList.remove('scale-110'), 200);
+            }, 600);
         }
 
+        function updateQty(name, change) {
+            if (cart[name]) {
+                cart[name].qty += change;
+                if (cart[name].qty <= 0) delete cart[name];
+                saveCart();
+                renderProducts(document.querySelector('.category-btn.active')?.innerText.toLowerCase() || 'all');
+                renderModalCart();
+            }
+        }
+
+        // Update UI
         function updateCartUI() {
             let total = 0, count = 0;
             for (let id in cart) {
@@ -200,19 +361,67 @@
                 count += cart[id].qty;
             }
 
-            document.getElementById('cart-total').innerText = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(total);
+            document.getElementById('cart-total').innerText = formatRp(total);
             document.getElementById('cart-badge').innerText = count;
 
             const bar = document.getElementById('sticky-cart');
             if (count > 0) {
-                bar.classList.remove('translate-y-40');
-                bar.classList.add('animate-bounce-subtle');
-                setTimeout(() => bar.classList.remove('animate-bounce-subtle'), 500);
+                bar.classList.remove('translate-y-40', 'opacity-0');
             } else {
-                bar.classList.add('translate-y-40');
+                bar.classList.add('translate-y-40', 'opacity-0');
+                // Close modal if empty
+                if(document.getElementById('cart-modal').classList.contains('opacity-100')) {
+                    toggleCartModal();
+                }
             }
         }
 
+        // Modal Cart Logic
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            const content = document.getElementById('cart-modal-content');
+            
+            if (modal.classList.contains('opacity-0')) {
+                renderModalCart();
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+                setTimeout(() => content.classList.remove('translate-y-full'), 10);
+            } else {
+                content.classList.add('translate-y-full');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-100');
+                    modal.classList.add('opacity-0', 'pointer-events-none');
+                }, 300);
+            }
+        }
+
+        function renderModalCart() {
+            const container = document.getElementById('modal-cart-items');
+            container.innerHTML = '';
+            let hasItems = false;
+
+            for (let name in cart) {
+                hasItems = true;
+                const item = cart[name];
+                container.innerHTML += `
+                    <div class="flex items-center justify-between gap-3 bg-apple-gray p-3 rounded-2xl">
+                        <img src="${item.img}" class="w-14 h-14 rounded-xl object-cover">
+                        <div class="flex-1">
+                            <p class="font-bold text-sm leading-tight">${name}</p>
+                            <p class="text-maroon font-bold text-xs">${formatRp(item.price)}</p>
+                        </div>
+                        <div class="flex items-center bg-white rounded-lg p-1 border border-black/5">
+                            <button onclick="updateQty('${name}', -1)" class="w-8 h-8 flex justify-center items-center font-bold text-maroon">-</button>
+                            <span class="w-6 text-center font-bold text-sm">${item.qty}</span>
+                            <button onclick="updateQty('${name}', 1)" class="w-8 h-8 flex justify-center items-center font-bold text-maroon">+</button>
+                        </div>
+                    </div>
+                `;
+            }
+            if(!hasItems) toggleCartModal();
+        }
+
+        // Checkout
         function checkoutWA() {
             let msg = "Halo Savora Artisan, saya mau pesan:\n\n";
             let total = 0;
@@ -221,14 +430,24 @@
                 total += cart[name].price * cart[name].qty;
             }
             if (total === 0) return alert("Pilih menu dulu bro!");
-            msg += `\nTotal: Rp ${total.toLocaleString('id-ID')}\n\nKirim ke alamat saya ya.`;
+            msg += `\n*Total: ${formatRp(total)}*\n\nKirim ke alamat saya ya.`;
             window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         function scrollToMenu() { document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' }); }
 
-        // Initial Load
+        // Mini Countdown Logic
+        setInterval(() => {
+            const d = new Date();
+            let h = 23 - d.getHours();
+            let m = 59 - d.getMinutes();
+            let s = 59 - d.getSeconds();
+            document.getElementById('countdown').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        }, 1000);
+
+        // Init
         renderProducts();
+        updateCartUI();
     </script>
 </body>
 </html>

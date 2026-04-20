@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Links | Toko Roti</title>
+    <style>
+        /* CSS sengaja dibuat basic dan kaku */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        .profile-pic {
+            width: 96px;
+            height: 96px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            font-size: 12px;
+            overflow: hidden;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            color: #000;
+        }
+
+        p.bio {
+            font-size: 14px;
+            color: #666;
+            margin: 0 0 30px 0;
+            text-align: center;
+        }
+
+        .links-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background-color: #f1f3f5;
+            color: #000;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #ced4da;
+            box-sizing: border-box;
+            transition: background-color 0.2s;
+        }
+
+        /* Tombol Katalog sengaja dibikin warnanya ngejreng tapi gak match */
+        .link-btn.highlight {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+        .link-btn:active {
+            background-color: #dee2e6;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding-top: 40px;
+            font-size: 12px;
+            color: #adb5bd;
+            font-weight: bold;
+        }
+
+        /* SIMULASI LOADING NGESELIN */
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-pic">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=200&auto=format&fit=crop" alt="Toko Roti">
+        </div>
+        <h1>Toko Roti & Kopi</h1>
+        <p class="bio">Buka setiap hari 08.00 - 20.00<br>Pesan melalui link di bawah 👇</p>
+
+        <div class="links-wrapper">
+            <a href="#" class="link-btn highlight" onclick="triggerLoading(event)">
+                📄 BUKA KATALOG MENU (PDF 18MB)
+            </a>
+            <a href="#" class="link-btn">
+                📱 Chat Admin 1 (Slow Respon)
+            </a>
+            <a href="#" class="link-btn">
+                📱 Chat Admin 2 (Sore Saja)
+            </a>
+            <a href="#" class="link-btn">
+                📍 Lokasi Toko Kami
+            </a>
+        </div>
+
+        <div class="footer">
+            link-tree-clone
+        </div>
+    </div>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">
+            Membuka Google Drive...<br>
+            <span style="font-size: 12px; color: #999; mt-2">Mengunduh PDF (18MB)... Harap tunggu.</span>
+        </div>
+    </div>
+
+    <script>
+        function triggerLoading(e) {
+            e.preventDefault();
+            // Munculin overlay loading
+            document.getElementById('loading-overlay').style.display = 'flex';
+            
+            // Biarin loading terus menerus buat keperluan record video
+            // Kalo mau dibikin berhenti otomatis dan balik lagi, un-comment kode di bawah ini:
+            
+            /*
+            setTimeout(() => {
+                document.getElementById('loading-overlay').style.display = 'none';
+                alert('Gagal memuat PDF. Koneksi terputus.');
+            }, 8000);
+            */
+        }
+    </script>
+
+</body>
+</html>
